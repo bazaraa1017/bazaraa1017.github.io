@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background changer</title>
+    <style type="text/css">
+        @import "layout.css";
+    </style>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/easySlider1.5.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#slider").easySlider({
+                auto: true,
+                continuous: true
+            });
+        });
+    </script>
+    <style>
+        body {
+            background: rgb(156, 223, 216);
+            font: Arial;
+            text-align: center;
+            color: #131414;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="centered">
+        <div id="header">
+            <a href="index-2.html"></a>
+            <ul id="navigation">
+                <li class="active"><a href="index-2.html">Home</a></li>
+                <li><a href="capsLock.html">CapsLock</a></li>
+                <li><a href="Toast.html">Toast</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="SPS.html">StonePS</a></li>
+                <li><a href="ToDo.html">ToDo</a></li>
+                <li><a href="backgroundChanger.html">Backgroundchanger</a></li>
+                <li><a href="stopwatch.html">Stopwatch</a></li>
+            </ul>
+        </div>
+        <div id="banner">
+            <div id="slider">
+                <ul>
+                    <li>
+                        <img src="images/Untitled 4.jpg" alt="" />
+                        <div class="info">
+                            <div>
+                                <h1>Javascript</h1>
+                                <p></p>
+                                <a href="#" class="more">More...</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="images/Untitled 2.jpg" alt="" />
+                        <div class="info">
+                            <div>
+                                <h1>Javascript Coding</h1>
+                                <p></p>
+                                <a href="#" class="more">More...</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="images/Untitled 3.jpg" alt="" />
+                        <div class="info">
+                            <div>
+                                <h1>Javascript Frameworks</h1>
+                                <p></p>
+                                <a href="#" class="more">More...</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<button onclick="changeColor()">Change color</button>
+<input id="myInput" type="text">
+<button onclick="addColor()">Add color</button>
+
+    <div id="footer">
+
+        <span class="copyright"> 2020 <a href="#">Bazargurev.mn</a>. All rights reserved.</span>
+    </div>
+    <script>
+        var myArray = ["darkblue", "purple", "blue", "yellow"];
+        var i = 0;
+
+        function addColor() {
+            document.body.style.background = document.getElementById("myInput").value;
+            if (document.body.style.background == document.getElementById("myInput").value) {
+                myArray.push(document.getElementById("myInput").value);
+            } else {
+                alert("wrong color!");
+            }
+        }
+
+        function changeColor() {
+            document.body.style.background = myArray[i];
+            i++;
+            if (i == myArray.length)
+                i = 0;
+        }
+    </script>
+   
+</body>
+
+</html>
