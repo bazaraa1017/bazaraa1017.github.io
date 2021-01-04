@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Calculator</title>
+    <title>bazargurev</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--  Google Fonts -->
@@ -19,47 +19,62 @@
     <link href="css/fm.revealator.jquery.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-
     <!-- Modernizr JS File -->
     <script src="js/modernizr.custom.js"></script>
-   <!-- main content style -->
-   <style>
-        * {
-            color: rgb(0, 0, 0);
+    <style>
+        #oyun-panel {
+            width: 50%;
+            height: 50%;
+            background: #4961e1;
+            padding: 16px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+            border-radius: 5px;
         }
 
-        .container {
-            width: 320px;
-            background-color: #4169e1;
-            margin: 10px auto;
+        h3 {
+            margin: 0 0 16px 0;
+            border: solid 1px #fff;
+            border-radius: 5px;
+            padding: 5px;
+            font-weight: 300;
+            font: 2.5em sans-serif;
         }
 
-        table {
-            width: 100%;
-            border-color: #09646407;
-            background-color: #4169e1;
+        #total {
+            width: 50px;
         }
 
-        td {
-            width: 25%;
-            border-color: rgba(0, 0, 0, 0.363);
-        }
-
-        button {
-            width: 100%;
-            height: 70px;
-            font-size: 24px;
-            background-color: #4169e1;
+        #check {
+            margin-top: 10px;
+            padding: 5px;
             border: none;
+            width: 100px;
+            background: #0288D1;
+            color: #fff;
+            border-radius: 5px;
         }
 
-        #inputLabel {
-            height: 120px;
-            font-size: 40px;
-            vertical-align: bottom;
-            text-align: right;
-            background-color: #4169e1;
+        #check:hover {
+            background: darkblue;
+        }
 
+        #tru,
+        #fals {
+            font-size: 150%;
+            margin-top: 10px;
+            padding: 10px;
+            display: inline-block;
+        }
+
+        #tru {
+            background: darkcyan;
+        }
+
+        #fals {
+            background: #812727;
         }
     </style>
 </head>
@@ -124,69 +139,100 @@
     <!-- Header Ends -->
     <!-- Page Title Starts -->
     <section class="title-section text-left text-sm-center revealator-slideup revealator-delay1">
-        <h1>my <span>project 1</span></h1>
+        <h1>my <span>project</span></h1>
         <span class="title-bg">works</span>
     </section>
     <!-- Page Title Ends -->
     <!-- Main Content Starts -->
-    <div class="container">
-        <table border="1" cellspacing="0">
-            <tr>
-                <td colspan="4" id="inputLabel">0</td>
-            </tr>
-            <tr>
-                <td colspan="3"><button onclick="pushBtn(this);">AC</button></td>
-                <td><button onclick="pushBtn(this);">/</button></td>
-            </tr>
-            <tr>
-                <td><button onclick="pushBtn(this);">7</button></td>
-                <td><button onclick="pushBtn(this);">8</button></td>
-                <td><button onclick="pushBtn(this);">9</button></td>
-                <td><button onclick="pushBtn(this);">*</button></td>
-            </tr>
-            <tr>
-                <td><button onclick="pushBtn(this);">4</button></td>
-                <td><button onclick="pushBtn(this);">5</button></td>
-                <td><button onclick="pushBtn(this);">6</button></td>
-                <td><button onclick="pushBtn(this);">-</button></td>
-            </tr>
-            <tr>
-                <td><button onclick="pushBtn(this);">1</button></td>
-                <td><button onclick="pushBtn(this);">2</button></td>
-                <td><button onclick="pushBtn(this);">3</button></td>
-                <td><button onclick="pushBtn(this);">+</button></td>
-            </tr>
-            <tr>
-                <td colspan="2"><button onclick="pushBtn(this);">0</button></td>
-                <td><button onclick="pushBtn(this);">.</button></td>
-                <td><button onclick="pushBtn(this);">=</button></td>
-            </tr>
-        </table>
+    <div id="oyun-panel">
+        <h3>Basic Arithmetic Math Game</h3>
+        <span id="number1">0</span>
+        <span id="opt">+</span>
+        <span id="number2">0</span>
+        <span>=</span>
+        <input type="text" id="total">
+        <input type="button" id="check" value="check">
+        <div style="clear:both"></div>
+        <div id="tru">0</div>
+        <div id="fals">0</div>
+        <div style="clear:both"></div>
     </div>
-
     <script>
-        var inputLabel = document.getElementById('inputLabel');
+        var number1, number2, tru = 0,
+            fals = 0,
+            total, check, opt;
 
-        function pushBtn(obj) {
+        number1 = document.getElementById("number1");
+        number2 = document.getElementById("number2");
+        opt = document.getElementById("opt");
+        total = document.getElementById("total");
+        check = document.getElementById("check");
+        tru = document.getElementById("tru");
+        fals = document.getElementById("fals");
 
-            var pushed = obj.innerHTML;
+        Math.rand = function (down, up) {
+            let number = Math.random();
+            number = number * (up - down);
+            number = Math.floor(number) + down;
 
-            if (pushed == '=') {
-                inputLabel.innerHTML = eval(inputLabel.innerHTML);
+            return number;
+        }
 
-            } else if (pushed == 'AC') {
-                inputLabel.innerHTML = '0';
+        function newquestion() {
+            let operation = ["+", "-", "*", "/"];
+            opt.textContent = operation[Math.rand(0, 4)];
 
-            } else {
-                if (inputLabel.innerHTML == '0') {
-                    inputLabel.innerHTML = pushed;
+            number1.textContent = Math.rand(0, 50);
+            number2.textContent = Math.rand(0, 50);
+            if (opt.textContent == "/") {
 
-                } else {
-                    inputLabel.innerHTML += pushed;
+                while (true) {
+                    number2.textContent = Math.rand(0, 50);
+                    if (number1.textContent % number2.textContent == 0) {
+                        break;
+                    }
                 }
             }
+
+        }
+
+        window.onload = function () {
+
+            newquestion();
+
+        }
+
+        check.onclick = function () {
+            let answer, n1, n2;
+            n1 = Number(number1.textContent);
+            n2 = Number(number2.textContent);
+            switch (opt.textContent) {
+                case '+':
+                    answer = n1 + n2;
+                    break;
+                case "-":
+                    answer = n1 - n2;
+                    break;
+                case "*":
+                    answer = n1 * n2;
+                    break;
+                case "/":
+                    answer = n1 / n2;
+                    break;
+                default:
+                    break;
+            }
+
+            if (total.value == answer) {
+                tru.textContent = Number(tru.textContent) + 1;
+            } else {
+                fals.textContent = Number(fals.textContent) + 1;
+            }
+
+            newquestion();
         }
     </script>
+
     <!-- Main Content Ends -->
 
     <!--  JS Files -->

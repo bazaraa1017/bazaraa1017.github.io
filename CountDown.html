@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Bazargurev - Personal Portfolio</title>
+    <title>bazargurev</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!--  Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -20,14 +21,43 @@
 
     <!-- Modernizr JS File -->
     <script src="js/modernizr.custom.js"></script>
+    <style>
+        article {
+            width: 300px;
+            text-align: center;
+            background-color: #4961e1;
+            border-radius: 10px;
+            margin: 50px auto 20px;
+            padding: 5px;
+            overflow: hidden;
+            box-shadow: 3px 3px 10px #ccc;
+        }
+
+        article h3 {
+            padding: 10px;
+            color: #fff;
+        }
+
+        article .count {
+            padding: 5px;
+        }
+
+        article #timer {
+            padding: 5px;
+            color: #4961e1;
+            background-color: aliceblue;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 
-<body class="home">
+<body class="portfolio">
+
     <!-- Header Starts -->
     <header class="header" id="navbar-collapse-toggle">
         <!-- Fixed Navigation Starts -->
         <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-delay1">
-            <li class="icon-box active">
+            <li class="icon-box">
                 <i class="fa fa-home"></i>
                 <a href="index.html">
                     <h2>Home</h2>
@@ -39,7 +69,7 @@
                     <h2>About</h2>
                 </a>
             </li>
-            <li class="icon-box">
+            <li class="icon-box active">
                 <i class="fa fa-briefcase"></i>
                 <a href="portfolio.html">
                     <h2>Portfolio</h2>
@@ -67,9 +97,10 @@
                 <span></span>
                 <span></span>
                 <ul class="list-unstyled" id="menu">
-                    <li class="active"><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+                    <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
                     <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
-                    <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
+                    <li class="active"><a href="portfolio.html"><i
+                                class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
                     <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
                     <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
                 </ul>
@@ -78,27 +109,55 @@
         <!-- Mobile Menu Ends -->
     </header>
     <!-- Header Ends -->
-    <!-- Main Content Starts -->
-    <section
-        class="container-fluid main-container container-home p-0 revealator-slideup revealator-delay1">
-        <div class="color-block d-none d-lg-block"></div>
-        <div class="row home-details-container align-items-center">
-            <div class="col-lg-4 bg position-fixed d-none d-lg-block"></div>
-            <div class="col-12 col-lg-8 offset-lg-4 home-details text-left text-sm-center text-lg-left">
-                <div>
-                    <img src="img/img-mobile.jpg" class="img-fluid main-img-mobile d-none d-sm-block d-lg-none"
-                        alt="my picture" />
-                    <h6 class="text-uppercase open-sans-font mb-0 d-block d-sm-none d-lg-block">hi there !</h6>
-                    <h1 class="text-uppercase poppins-font"><span>I'm</span> Bazargurev Burged </h1>
-                    <p class="open-sans-font">In “My Career,” first experience with banking and Finance. Having experience
-                        in financial management is important for some employers and is necessary for some
-                        financial certification programs.
-                    </p>
-                    <a href="about.html" class="btn btn-about">more about me</a>
-                </div>
-            </div>
-        </div>
+    <!-- Page Title Starts -->
+    <section class="title-section text-left text-sm-center revealator-slideup revealator-delay1">
+        <h1>my <span>project</span></h1>
+        <span class="title-bg">works</span>
     </section>
+    <!-- Page Title Ends -->
+    <!-- Main Content Starts -->
+    <article id="model3">
+        <h3></h3>
+
+        <div class="count">
+            <div id="timer"></div>
+        </div>
+    </article>
+    <script>
+        var h3 = document.getElementsByTagName("h3");
+        h3[0].innerHTML = "Countdown Timer";
+        var sec = 750,
+            countDiv = document.getElementById("timer"),
+            secpass,
+            countDown = setInterval(function () {
+                "use strict";
+
+                secpass();
+            }, 1000);
+
+        function secpass() {
+            "use strict";
+
+            var min = Math.floor(sec / 60),
+                remSec = sec % 60;
+
+            if (remSec < 10) {
+                remSec = "0" + remSec;
+            }
+            if (min < 10) {
+                min = "0" + min;
+            }
+            countDiv.innerHTML = min + ":" + remSec;
+
+            if (sec > 0) {
+                sec = sec - 1;
+            } else {
+                clearInterval(countDown);
+
+                countDiv.innerHTML = "countdown done";
+            }
+        }
+    </script>
     <!-- Main Content Ends -->
 
     <!--  JS Files -->

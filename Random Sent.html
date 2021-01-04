@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>BackgroundColorChanger</title>
+    <title>Random Sentence</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--  Google Fonts -->
@@ -19,51 +19,72 @@
     <link href="css/fm.revealator.jquery.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- main content style -->
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            max-width: 500px;
-            margin: 0 auto;
-            transition: background .3s;
-        }
-
-        h1 {
-            text-transform: uppercase;
-            text-align: center;
-            font-size: 3rem;
-        }
-
-        #btn {
-            padding: 1rem 2rem;
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 40px;
-            text-transform: none;
-            margin-top: 5rem;
-            margin-bottom: 3rem;
-            outline: none;
-        }
-
-        .new-color {
-            background: #74B9FF;
-        }
-    </style>
-
-
     <!-- Modernizr JS File -->
     <script src="js/modernizr.custom.js"></script>
+    <style>
+        .container {
+            background-color: #4961e1;
+            color: whitesmoke;
+            position: relative;
+            /* margin-top: 10vh; */
+            width: auto;
+            height: 50%;
+            padding-top: 14vh;
+            box-sizing: border-box;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .container p {
+            margin-top: 10vh;
+            padding: 5px;
+            line-height: 1.6;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            width: 73cr;
+            /* top: 20vh; */
+        }
+
+        h3 {
+            font-size: 40px;
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        button {
+            height: 50px;
+            justify-content: right;
+            outline: none;
+            position: inherit;
+            padding: 10px;
+            width: 120px;
+            left: 100vh;
+            border: none;
+            background-color: #fff;
+            border: 2px solid #1b1b1b;
+            border-radius: 5px;
+            color: #1b1b1b;
+            transition: 500ms ease-in;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+        }
+
+        button i {
+            margin-left: 3px;
+        }
+
+        button:hover {
+            color: #fff;
+            background-color: #1b1b1b;
+        }
+
+        .container:first-child {
+            height: 30vh !important;
+        }
+    </style>
 </head>
 
 <body class="portfolio">
@@ -71,7 +92,7 @@
     <!-- Header Starts -->
     <header class="header" id="navbar-collapse-toggle">
         <!-- Fixed Navigation Starts -->
-        <ul class="icon-menu d-none d-lg-block revealator-slideup  revealator-delay1">
+        <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-delay1">
             <li class="icon-box">
                 <i class="fa fa-home"></i>
                 <a href="index.html">
@@ -125,24 +146,54 @@
     </header>
     <!-- Header Ends -->
     <!-- Page Title Starts -->
-    <section class="title-section text-left text-sm-center revealator-slideup  revealator-delay1">
+    <section class="title-section text-left text-sm-center revealator-slideup revealator-delay1">
         <h1>my <span>project</span></h1>
         <span class="title-bg">works</span>
     </section>
     <!-- Page Title Ends -->
     <!-- Main Content Starts -->
-    <h1> Background color changer</h1>
-    <button id="btn">Change background</button>
+
+    <div class="container">
+        <div style="box-sizing:border-box;display:flex;justify-content:center;align-items:center">
+            <h3> Sentence Generator</h3>
+            <button onclick="sentence()">Refresh</button>
+        </div>
+        <p id="sentence"></p>
+    </div>
     <script>
-        const body = document.querySelector('body');
-        const button = document.querySelector('#btn');
-        button.addEventListener('click', () => {
-            /* body.classList.toggle('new-color');*/
-            body.style.background =
-                `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`;
-        });
+        var verbs, nouns, adjectives, preposition;
+        nouns = ["шувуу", "цаг", "хүү", "охин", "галуу", "багш", "хатагтай", "професор", "нугас", "нохой"];
+        verbs = ["цохисон", "гүйсэн", "ниссэн", "бултсан", "хуваасан", "ороосон", "уурласан", "амьсгалсан", "унтсан",
+            "нийлүүлсэн"
+        ];
+        adjectives = ["хөөрхөн", "залхуу", "мэргэжлийн", "хайрт", "ухаантай", "шулуун", "зөөлөн", "халуун", "галзуу",
+            "туранхай"
+        ];
+        preposition = ["доор", "дотор", "дээр", "дээд талд", "дээр нь", "доор", "өмнө", "хажууд", "хөндлөн", "зүгт"];
+
+        function randGen() {
+            return Math.floor(Math.random() * 5);
+        }
+
+        function sentence() {
+            var rand1 = Math.floor(Math.random() * 10);
+            var rand2 = Math.floor(Math.random() * 10);
+            var rand3 = Math.floor(Math.random() * 10);
+            var rand4 = Math.floor(Math.random() * 10);
+            var rand5 = Math.floor(Math.random() * 10);
+            var rand6 = Math.floor(Math.random() * 10);
+            var content = adjectives[rand1] + " " + nouns[rand2] + " " + verbs[rand4] +
+                " учир нь " + nouns[rand1] + " " + verbs[rand1] + " " + preposition[rand1] +
+                "  " + adjectives[rand2] + " " + nouns[rand5] + "  " + adjectives[rand3] + " " +
+                adjectives[rand4] + " " + nouns[rand6] + " " + verbs[rand3] + ".";
+
+            document.getElementById('sentence').innerHTML = "&quot;" + content + "&quot;";
+        };
+        sentence();
     </script>
+
     <!-- Main Content Ends -->
+
     <!--  JS Files -->
     <script src="js/jquery-3.5.0.min.js"></script>
     <script src="js/styleswitcher.js"></script>
